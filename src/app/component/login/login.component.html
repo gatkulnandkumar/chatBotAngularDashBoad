@@ -1,0 +1,315 @@
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4" style="margin-top: 2%;" style="justify-content: center;margin-left: 30%;margin-right: 30%;">
+            <div class="card" style="margin-bottom: 3%;">
+                <div class="card-body" style="background-color: #e3f2fd ;">
+                    <div class="card text-center" >
+                        <div class="col-md-12">
+                            <div class="header" style="font-size: larger; font-weight: bold ;margin-top: 2%; ">
+                                <h2> LOGIN</h2>
+                            </div>
+                            <form class="form" role="form" (ngSubmit)="Logging()" [formGroup]="loginForm">
+                                <div class="form-group" style="margin-top: 1%;">
+                                    <label for="username" style="margin-right: 75%;">Username <span
+                                            style="color:red">*</span></label>
+
+                                    <input type="text" id="username" class="form-control" name="username"
+                                        placeholder="Your username" formControlName="username" #username
+                                        data-cy="username" autocomplete="off" minlength="4" />
+                                    <div *ngIf="loginForm.controls.username.invalid && loginForm.controls.username.touched && loginForm.controls.username.dirty ">
+                                        <div *ngIf="loginForm.controls.username.errors?.required" style="color: red;">
+                                            Username is required.</div>
+                                        <div *ngIf="loginForm.controls.username.errors?.minlength" style="color: red">
+                                            Username should be at least 4 characters long.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 1%;">
+                                    <label style="margin-right: 75%;">Password <span style="color:red">*</span></label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Your password" formControlName="password" data-cy="password"
+                                        autocomplete="off" minlength="4" />
+                                
+                                    <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched && loginForm.controls.password.dirty ">
+                                        <div *ngIf="loginForm.controls.password.errors?.required" style="color: red;">
+                                            password is required.</div>
+                                        <div *ngIf="loginForm.controls.password.errors?.minlength" style="color: red">
+                                            password should be at least 4 characters long.</div>
+                                    </div>
+
+                                </div>
+                                <div class="form-check" style="margin-right: 20%; margin-top: 1%;">
+                                    <label class="form-check-label" for="rememberMe">
+                                        <input class="form-check-input" type="checkbox" name="rememberMe"
+                                            id="rememberMe" formControlName="rememberMe" />
+                                        <span>Remember me</span>
+                                    </label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <button type="submit" class="btn btn-outline-primary" data-cy="submit"
+                                        style="margin-top: 3%">Sign in</button>
+                                    <button type="button" class="btn btn-outline-secondary mx-3" (click)="clearForm()"
+                                        style="margin-top: 3%;">Cancel</button>
+                                </div>
+                                <label>Do you have account ?</label>
+                                <button type="button" class="btn btn-link" (click)="openModal()"> create a new account</button>
+
+                                //Model 
+                                <div class="modal-overlay" *ngIf="showModal" >
+                                    <div class="modal-container">
+                                      <div class="modal-header">
+                                        <h2>Signup</h2>
+                                        <button class="close-button" (click)="closeModal()">X</button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form  class="form" role="form" (ngSubmit)="onSingUp()" [formGroup]="signUpForm">
+                                          <label for="uname">Username:</label>
+                                          <input type="text" class="form-control" name="uname" id="uname"
+                                            placeholder="Your username" formControlName="uname" data-cy="uname"
+                                            autocomplete="off" minlength="4" />
+                                            <div *ngIf="signUpForm.controls.uname.invalid && signUpForm.controls.uname.touched && signUpForm.controls.uname.dirty ">
+                                                <div *ngIf="signUpForm.controls.uname.errors?.required" style="color: red;">
+                                                    uname is required.</div>
+                                                <div *ngIf="signUpForm.controls.uname.errors?.minlength" style="color: red">
+                                                    uname should be at least 5 characters long.</div>
+                                            </div>
+
+                                            <label for="pass">Password:</label>
+                                            <input type="password" class="form-control" name="pass" id="pass"
+                                            placeholder="Your password" formControlName="pass" data-cy="pass"
+                                            autocomplete="off" minlength="5" />
+
+                                            
+                                            <div *ngIf="signUpForm.controls.pass.invalid && signUpForm.controls.pass.touched && signUpForm.controls.pass.dirty ">
+                                                <div *ngIf="signUpForm.controls.pass.errors?.required" style="color: red;">
+                                                    password is required.</div>
+                                                <div *ngIf="signUpForm.controls.pass.errors?.minlength" style="color: red">
+                                                    password should be at least 5 characters long.</div>
+                                            </div>
+
+                                        comment part   //  <label for="cnfpassword">Confirm Password:</label>
+                                            <input type="password" class="form-control" name="cnfpassword" id="cnfpassword"
+                                            placeholder="Your confirm password" formControlName="cnfpassword" data-cy="cnfpassword"
+                                            autocomplete="off" minlength="6" />
+
+                                            <div *ngIf="signUpForm.controls.cnfpassword.invalid && signUpForm.controls.cnfpassword.touched && signUpForm.controls.cnfpassword.dirty ">
+                                                <div *ngIf="signUpForm.controls.cnfpassword.errors?.required" style="color: red;">
+                                                    password is required.</div>
+                                                <div *ngIf="signUpForm.controls.cnfpassword.errors?.minlength" style="color: red">
+                                                    password should be at least 5 characters long.</div>
+                                           comment end // </div>
+
+                                            <div style="margin-bottom: 10px; margin-top: 10px;">
+                                                <button type="submit" class="btn btn-outline-primary" data-cy="submit"
+                                                    style="margin-top: 3%">Register</button>
+                                                <button type="button" class="btn btn-outline-secondary mx-3" (click)="cancel()"
+                                                    style="margin-top: 3%;">Cancel</button>
+                                            </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="d-flex justify-content-center">
+    <mat-card style="border-radius: 40px;border: 1px solid rgb(114, 168, 248);">
+        <mat-card-header class="d-flex justify-content-center align-items-center">
+            <mat-card-title>
+                <!-- <img src="./assets/ambit-small.png" height="100px" alt="Ambit"> -->
+                <h1>Login</h1>
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="d-flex justify-content-center align-items-center">
+            <form [formGroup]="loginForm">
+                <div class="row">
+                    <div class="col-md-12 offset-2">
+                        <mat-form-field appearance="outline" style="margin-top: 2%; width: 300px; height: 60px;">
+                            <mat-label>User Name</mat-label>
+                            <input matInput placeholder="Enter Username" formControlName="username" id="username"
+                                autocomplete="off" autofocus required="isuserNameGenerated ? true : false">
+                            <mat-error
+                                *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+                                <span *ngIf="loginForm.controls['username'].hasError('required')">Username is
+                                    required</span>
+                                <span *ngIf="loginForm.controls['username'].hasError('pattern')">User name should be
+                                    alphanumberic</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 offset-2">
+                        <mat-form-field appearance="outline" style="margin-top: 3%; width: 300px; height: 60px;">
+                            <mat-label>password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter Password"
+                                formControlName="password" required="ispasswordGenerated ? true : false">
+                            <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error
+                                *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                                <span *ngIf="loginForm.controls['password'].hasError('required')">password is
+                                    required</span>
+                                <span *ngIf="loginForm.controls['password'].hasError('minlength')">password must be
+                                    6-digit number</span>
+                                <span *ngIf="loginForm.controls['password'].hasError('maxlength')">password must be
+                                    6-digit number</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-12 offset-2">
+                        <mat-checkbox style="margin-top: 3%;" formControlName="consent">Remember Me</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 offset-2">
+                        <div class="submit-btn">
+                            <!-- <button class="btn btn-danger" (click)="handleGeneratepassword()"
+                              [disabled]="!loginForm?.get('uidai')?.valid">Generate password</button> -->
+                            <button class="btn btn-outline-danger" (click)="Logging()"
+                                [disabled]="!loginForm?.get('username')?.valid">Submit</button>
+                            <button class="btn btn-outline-danger" (click)="loginCancel()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 offset-2">
+                        <label>Do you have account ?</label>
+                        <button type="button" class="btn btn-link" (click)="openModal()"> create a new account</button>
+                    </div>
+                </div>
+
+                <!-- //Model -->
+                <div class="modal-overlay" *ngIf="showModal">
+                    <div class="modal-container">
+                        <div class="modal-header">
+                            <h2>Signup</h2>
+                            <button class="close-button" (click)="closeModal()">X</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" role="form" (ngSubmit)="onSingUp()" [formGroup]="signUpForm">
+                                <label for="uname">Username:</label>
+                                <input type="text" class="form-control" name="uname" id="uname"
+                                    placeholder="Your username" formControlName="uname" data-cy="uname"
+                                    autocomplete="off" minlength="4" />
+                                <div
+                                    *ngIf="signUpForm.controls.uname.invalid && signUpForm.controls.uname.touched && signUpForm.controls.uname.dirty ">
+                                    <div *ngIf="signUpForm.controls.uname.errors?.required" style="color: red;">
+                                        Username is required.</div>
+                                    <div *ngIf="signUpForm.controls.uname.errors?.minlength" style="color: red">
+                                        Username should be at least 5 characters long.</div>
+                                </div>
+
+                                <label for="pass">Password:</label>
+                                <input type="password" class="form-control" name="pass" id="pass"
+                                    placeholder="Your password" formControlName="pass" data-cy="pass" autocomplete="off"
+                                    minlength="5" />
+
+                                <!-- <input style="padding-left: 50px" matInput [type]="view ? 'password' : 'text'"
+                            type="password" class="form-control" id="newPass" formControlName="password"
+                            aria-describedby="" (keypress)="keyPressAlphaNumeric($event)"
+                            (focus)="onFocusEvent($event)" minlength="8" maxlength="20">
+                            <button type="button" mat-icon-button matSuffix (click)="view = !view"
+                            [attr.aria-label]="'Show password'" [attr.aria-pressed]="view" class="eye-hide">
+                            <mat-icon>{{view ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button> -->
+
+                                <div
+                                    *ngIf="signUpForm.controls.pass.invalid && signUpForm.controls.pass.touched && signUpForm.controls.pass.dirty ">
+                                    <div *ngIf="signUpForm.controls.pass.errors?.required" style="color: red;">
+                                        password is required.</div>
+                                    <div *ngIf="signUpForm.controls.pass.errors?.minlength" style="color: red">
+                                        password should be at least 5 characters long.</div>
+
+                                    <div *ngIf="signUpForm.controls.pass.hasError('invalidPassword')"
+                                        style="color: red">
+                                        Password is invalid. Please enter a password with at least one uppercase letter,
+                                        one lowercase letter, one number, one special character, and a minimum length of
+                                        6 characters.
+                                    </div>
+
+                                </div>
+
+                                <label for="cnfpassword">Confirm Password:</label>
+                            <input type="password" class="form-control" name="cnfpassword" id="cnfpassword"
+                            placeholder="Your confirm password" formControlName="cnfpassword" data-cy="cnfpassword"
+                            autocomplete="off" minlength="6" />
+
+                            <div *ngIf="signUpForm.controls.cnfpassword.invalid && signUpForm.controls.cnfpassword.touched && signUpForm.controls.cnfpassword.dirty ">
+                                <div *ngIf="signUpForm.controls.cnfpassword.errors?.required" style="color: red;">
+                                    password is required.</div>
+                                <div *ngIf="signUpForm.controls.cnfpassword.errors?.minlength" style="color: red">
+                                    password should be at least 5 characters long.</div> 
+                            </div>
+                                <div *ngIf="signUpForm.hasError('passwordMismatch') && signUpForm.controls.cnfpassword.dirty" style="color: red;">
+                                Passwords do not match.
+                                </div>  
+                                <div style="margin-bottom: 10px; margin-top: 10px;">
+                                    <button type="submit" class="btn btn-outline-primary" data-cy="submit"
+                                        style="margin-top: 3%">Register</button>
+                                    <button type="button" class="btn btn-outline-secondary mx-3" (click)="cancel()"
+                                        style="margin-top: 3%;">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--   
+              <div class="submit-btn">
+              
+                <button class="btn btn-outline-danger" (click)="handleGeneratepassword()"
+                  [disabled]="!loginForm?.get('username')?.valid || !loginForm?.get('consent')?.value">Generate password</button>
+                  <button class="btn btn-outline-danger" >Cancel</button>
+              </div> -->
+
+
+
+                <!-- <ng-template #passwordSection>
+  
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter password" formControlName="password"
+                    required="ispasswordGenerated ? true : false">
+                  <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  <mat-error
+                    *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                    <span *ngIf="loginForm.controls['password'].hasError('required')">password is required</span>
+                    <span *ngIf="loginForm.controls['password'].hasError('minlength')">password must be 6-digit number</span>
+                    <span *ngIf="loginForm.controls['password'].hasError('maxlength')">password must be 6-digit number</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+  
+              <div class="submit-btn">
+                <button class="btn btn-outline-danger" (click)="verifypassword()" [disabled]="!loginForm?.get('password')?.valid">Verify
+                  password</button>
+                  <button class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+              </div>
+            </div>
+  
+          </ng-template> -->
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

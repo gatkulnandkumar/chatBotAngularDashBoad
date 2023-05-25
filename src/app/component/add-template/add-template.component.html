@@ -1,0 +1,136 @@
+<h2 style="text-align: center;">Add template</h2>
+<div class="container-fluid">
+  <div class="row ">
+    <div class="col-md-8 offset-2" style="margin-top: 3%;">
+      <form class="form" role="form" (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline" style="margin-top: 1%; width: 400px; height: 60px;">
+              <mat-label>message_type</mat-label>
+              <input matInput type="text" id="message_type" name="message_type" placeholder="Please Enter message_type"
+                formControlName="message_type" #message_type data-cy="message_type" autocomplete="off" minlength="3" />
+              <mat-error
+                *ngIf="form.controls.message_type.invalid && form.controls.message_type.touched && form.controls.message_type.dirty">
+                <span *ngIf="form.controls.message_type.errors?.required" style="color: red;">message_type is
+                  required.</span>
+                <span *ngIf="form.controls.message_type.errors?.minlength" style="color: red;">message_type should be at
+                  least 3 characters long.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="outline" style="margin-top: 1%; width: 400px; height: 60px;">
+              <mat-label>message</mat-label>
+              <input matInput type="text" name="message" id="message" placeholder="Please Enter message"
+                formControlName="message" data-cy="message" autocomplete="off" minlength="1" />
+              <mat-error
+                *ngIf="form.controls.message.invalid && form.controls.message.touched && form.controls.message.dirty">
+                <span *ngIf="form.controls.message.errors?.required" style="color: red;">message is required.</span>
+                <span *ngIf="form.controls.message.errors?.minlength" style="color: red;">message should be at least 1
+                  character long.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline" style="margin-top: 1%; width: 400px; height: 60px;">
+              <mat-label>context_id</mat-label>
+              <input matInput type="text" id="context_id" name="context_id" placeholder="Please Enter context_id"
+                formControlName="context_id" #context_id data-cy="context_id" autocomplete="off" minlength="3" />
+              <mat-error
+                *ngIf="form.controls.context_id.invalid && form.controls.context_id.touched && form.controls.context_id.dirty">
+                <span *ngIf="form.controls.context_id.errors?.required" style="color: red;">context_id is
+                  required.</span>
+                <span *ngIf="form.controls.context_id.errors?.minlength" style="color: red;">context_id should be at
+                  least 3 characters long.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+
+          <div class="col">
+            <mat-form-field appearance="outline" style="margin-top: 1%; width: 400px; height: 60px;">
+              <mat-label>next_action</mat-label>
+              <input matInput type="text" name="next_action" id="next_action" placeholder="Please Enter next_action"
+                formControlName="next_action" data-cy="next_action" autocomplete="off" minlength="3" />
+              <mat-error
+                *ngIf="form.controls.next_action.invalid && form.controls.next_action.touched && form.controls.next_action.dirty">
+                <span *ngIf="form.controls.next_action.errors?.required" style="color: red;">next_action is
+                  required.</span>
+                <span *ngIf="form.controls.next_action.errors?.minlength" style="color: red;">next_action should be at
+                  least 3 characters long.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline" style="margin-top: 1%; width: 400px; height: 60px;">
+              <mat-label>execution_detail</mat-label>
+              <input matInput type="text" name="execution_detail" id="execution_detail"
+                placeholder="Please Enter execution_detail" formControlName="execution_detail"
+                data-cy="execution_detail" autocomplete="off" minlength="3" />
+              <mat-error
+                *ngIf="form.controls.execution_detail.invalid && form.controls.execution_detail.touched && form.controls.execution_detail.dirty">
+                <span *ngIf="form.controls.execution_detail.errors?.required" style="color: red;">execution_detail is
+                  required.</span>
+                <span *ngIf="form.controls.execution_detail.errors?.minlength" style="color: red;">execution_detail
+                  should be at least 3 characters long.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="outline" style="margin-top: 1%; width: 400px; height: 60px;">
+              <mat-label>issue_types</mat-label>
+              <input matInput type="text" name="issue_types" id="issue_types" placeholder="Please Enter issue_types"
+                formControlName="issue_types" data-cy="issue_types" autocomplete="off" minlength="3" />
+              <mat-error
+                *ngIf="form.controls.issue_types.invalid && form.controls.issue_types.touched && form.controls.issue_types.dirty">
+                <span *ngIf="form.controls.issue_types.errors?.required" style="color: red;">issue_types is
+                  required.</span>
+                <span *ngIf="form.controls.issue_types.errors?.minlength" style="color: red;">issue_types should be at
+                  least 3 characters long.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline" style="margin-top: 1%; width: 600px; height: 60px;">
+              <mat-label>payload</mat-label>
+              <textarea matInput name="payload" id="payload" placeholder="Please Enter payload"
+                formControlName="payload" data-cy="payload" autocomplete="off" minlength="3"
+                style="height: 200px;"></textarea>
+              <mat-error
+                *ngIf="form.controls.payload.invalid && form.controls.payload.touched && form.controls.payload.dirty">
+                <span *ngIf="form.controls.payload.errors?.required" style="color: red;">payload is required.</span>
+                <span *ngIf="form.controls.payload.errors?.minlength" style="color: red;">payload should be at least 3
+                  characters long.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+        
+
+        <div class="row">
+          <div class="col">
+            <div style="margin-left: 40%; margin-top: 20px;">
+              <button type="submit" [disabled]="form.invalid" class="btn btn-outline-success" data-cy="submit"
+                style="margin-top: 3%">Add Template</button>
+              <button type="button" class="btn btn-outline-danger mx-3" (click)="clearForm()"
+                style="margin-top: 3%">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

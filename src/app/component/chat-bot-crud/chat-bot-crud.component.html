@@ -1,0 +1,163 @@
+<!-- <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>MSG_STRING</th>
+        <th>NEXT_ACTION</th>
+        <th>EXECUTION</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let chatbot of chatBotList">
+        <td>{{ chatbot.id }}</td>
+        <td>{{ chatbot.msg_string }}</td>
+        <td>{{ chatbot.next_action }}</td>
+        <td>{{ chatbot.execution }}</td>
+        <td>{{ chatbot.context }}</td>
+      </tr>
+    </tbody>
+  </table> -->
+  <h4></h4>
+
+<div class="container-100">
+  <div class="col-md-12">
+    <h2 style="text-align: center;">Template DashBoard</h2>
+    <div class="row justify-content-end">
+
+      <div class="col-md-10 d-flex justify-content-end">
+        <!-- <div class="buttons" style="margin-left: 5px;"> -->
+        <section>
+          <div class="example-button-row-add-template">
+            <!-- <button mat-button color="primary" [routerLink]="['/addTemplate']">Add Template</button>  -->
+            <!-- <button mat-button color="primary" (click)="addTemplate()">Add Template</button> -->
+
+            <button mat-icon-button (click)="addTemplate()">
+              <mat-icon matTooltip="Add Activity">add</mat-icon>
+            </button>
+          </div>
+        </section>
+        <!-- </div> -->
+      </div>
+      <div class="col-md-2 d-flex justify-content-end">
+        <section>
+          <div class="example-button-row">
+            <!-- <button mat-button color="primary" (click)="logout()" [routerLink]="['/login']">Logout</button> -->
+
+            <button mat-icon-button (click)="logout()" [routerLink]="['/login']">
+              <mat-icon matTooltip="Logout">logout</mat-icon>
+            </button>
+
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- <mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="message_type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> message_type </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.message_type}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="message">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> message </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.message}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="next_action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> next_action </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.next_action}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="context_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> context_id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.context_id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="execution_detail">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> execution_detail </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.execution_detail}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="payload">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> payload </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.payload}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="issue_types">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> issue_types </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.issue_types}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" [routerLink]="['/updateTemplate', element.id]">
+            
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteTempalteData(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 25]" showFirstLastButtons></mat-paginator> -->
+    <div class="col-md-12" style="margin-top: 20px;">
+      <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>message_type</th>
+            <th>message</th>
+            <th>next_action</th>
+            <th>context_id</th>
+            <th>execution_detail</th>
+            <th>payload</th>
+            <th>issue_types</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bot of chatBotList">
+            <td>{{bot.id}}</td>
+            <td>{{bot.message_type}}</td>
+            <td>{{bot.message}}</td>
+            <td>{{bot.next_action}}</td>
+            <td>{{bot.context_id}}</td>
+            <td>{{bot.execution_detail}}</td>
+            <td>{{bot.payload}}</td>
+            <td>{{bot.issue_types}}</td>
+            <!-- <td>{{bot.Actions}}</td> -->
+            <td>
+
+              <!-- <button mat-icon-button color="primary" [routerLink]="['/updateTemplate', bot.id]">
+            <mat-icon>edit</mat-icon>
+          </button> -->
+
+              <button mat-icon-button  [routerLink]="['/updateTemplate', bot.id]">
+                <mat-icon matTooltip="Edit">edit</mat-icon>
+              </button>
+
+              <button mat-icon-button color="warn" (click)="deleteTempalteData(bot.id)">
+                <mat-icon matTooltip="Delete">delete</mat-icon>
+              </button>
+
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
